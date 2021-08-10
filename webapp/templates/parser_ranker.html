@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block title %}RESParse - Parser Ranker{% endblock
+%} {% block head %} {{ super() }}
+<style>
+  .job-header {
+    padding: 30px 100px;
+  }
+
+  .job-header p {
+    font-size: 1rem;
+    font-family: serif;
+    padding: 10px;
+  }
+
+  .ents-box {
+    margin: 10px 80px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.4vw;
+    box-shadow: 1px solid black;
+    justify-content: space-between;
+  }
+
+  .ents {
+    padding: 15px;
+  }
+
+  .rating p {
+    font-size: 2rem;
+    padding: 50% 10px 0px 0px;
+    color: var(--text-secondary-2);
+    font-weight: 900;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .name {
+    font-size: 2rem;
+    color: var(--bg-secondary);
+    font-weight: 900;
+  }
+
+  .des-box {
+    margin: 8px 0px;
+    background-color: var(--text-primary-2);
+    padding: 8px;
+  }
+
+  .skill-box {
+    margin: 8px 0px;
+    background-color: var(--text-secondary);
+    padding: 8px;
+  }
+
+  .designation {
+    color: var(--bg-primary);
+    padding: 2px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .skill {
+    color: var(--bg-primary);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .email {
+    font-size: 14px;
+    color: #353535;
+    padding: 2px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .job-header {
+      padding: 15px 60px;
+    }
+
+    .ents-box {
+      margin: 10px 30px;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<section>
+  <div class="job-header">
+    <h2>Job Description</h2>
+    <p>{{ descr }}</p>
+    <hr />
+  </div>
+  <ul>
+    {% for idx, row in ranked_resumes.iterrows() %} {% if idx != 0 %}
+    <div class="ents-box">
+      <div class="ents">
+        {% if row['Entities'].get('name') != None %}
+        <p class="name">{{ ' '.join(row['Entities']['name']) }}</p>
+        {% endif %}
+        <div class="des-box">
+          {% if row['Entities'].get('designation') != None %}
+          <p class="designation" style="padding: 2px">
+            {{ ', '.join(row['Entities']['designation']) }}
+          </p>
+          {% endif %}
+        </div>
+        {% if row['Entities'].get('email address') != None %}
+        <p class="email" style="padding: 2px">
+          {{ ', '.join(row['Entities']['email address']) }}
+        </p>
+        {% endif %} {% if row['Entities'].get('degree') != None %}
+        <p style="padding: 2px; font-weight: 900">
+          {{ ', '.join(row['Entities']['degree']) }}
+        </p>
+        {% endif %} {% if row['Entities'].get('college name') != None %}
+        <p style="padding: 2px; font-style: italic">
+          {{ ', '.join(row['Entities']['college name']) }}
+        </p>
+        {% endif %} {% if row['Entities'].get('companies worked at') != None %}
+        <p style="padding: 2px">
+          {{ ', '.join(row['Entities']['companies worked at']) }}
+        </p>
+        {% endif %} {% if row['Entities'].get('years of experience') != None %}
+        <p style="padding: 2px">
+          {{ ''.join(row['Entities']['years of experience']) }} experience
+        </p>
+        {% endif %}
+        <div class="skill-box">
+          {% if row['Entities'].get('skills') != None %}
+          <p style="padding: 2px" class="skill">
+            {{ ', '.join(row['Entities']['skills']) }}
+          </p>
+          {% endif %}
+        </div>
+        <hr style="margin: 15px" />
+      </div>
+      <div class="rating">
+        <p>{{ "%0.2f" % row['Cosine Similarity'] }}</p>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </ul>
+</section>
+{% endblock %}

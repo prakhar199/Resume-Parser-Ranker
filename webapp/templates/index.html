@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block title %}RESParse{% endblock %} {% block
+head%} {{ super() }}
+<style>
+  main {
+    margin-top: 0;
+    width: 100%;
+    height: 100vh;
+    background: url("../static/images/bg2.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    object-fit: contain;
+  }
+
+  section {
+    background-color: var(--text-primary);
+    height: 100vh;
+    width: 100%;
+  }
+
+  .content button {
+    border: 2px solid var(--text-primary-2);
+    background-color: var(--bg-secondary);
+    width: 240px;
+    padding: 15px;
+    margin: 0 auto;
+    transition: transform 340ms;
+  }
+
+  .btn-link {
+    color: var(--text-primary-2);
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  img {
+    height: 240px;
+    width: 240px;
+  }
+  .content {
+    padding-top: 25vh;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .box-message {
+    display: flex;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  .box-message h2 {
+    color: var(--text-primary-2);
+    font-size: 5rem;
+  }
+
+  .content p {
+    color: var(--text-secondary);
+    font-family: "Courier New", Courier, monospace;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .content button:hover {
+    transform: scale(1.08);
+  }
+  @media screen and (max-width: 900px) {
+    img {
+      height: 120px;
+      width: 120px;
+    }
+
+    .box-message h2 {
+      font-size: 3rem;
+    }
+
+    .content {
+      padding-top: 10%;
+      flex-direction: column;
+    }
+
+    .box {
+      flex-direction: column;
+    }
+
+    .box-message {
+      flex-direction: column;
+    }
+
+    .content p {
+      font-size: small;
+    }
+  }
+</style>
+
+{% endblock %} {% block content %}
+<main>
+  <div class="content">
+    <div class="box">
+      <img src="../static/images/resume_cartoon.png" alt="resume cartoon" />
+      <div class="box-message">
+        <h2>RESParse</h2>
+        <p class="welcome-message">
+          Human resource managers needs to go through a lot of resume to find
+          the perfect match. Our algorithm simplifies this workflow by
+          extracting meaningful information from a resume and ranks it based on
+          the job description.
+        </p>
+      </div>
+    </div>
+    <button>
+      <a href="{{ url_for('form') }}" class="btn-link">Test the services</a>
+    </button>
+  </div>
+</main>
+{% endblock %}

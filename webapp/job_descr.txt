@@ -1,0 +1,18 @@
+Java Developer needed
+
+Designing and developing high-volume low latency applications for mission critical systems
+and delivering high availaibity and performance
+Contributing in all phases of the development lifecycle
+writing well designed, testable, efficient code
+
+BS/MS degree in Computer Science, Engineering or a related subject
+proven hands-on experience in software development
+proven working experience in Java development
+Hands on experience in designing and developing applications using Java EE platforms
+Object oriented analysis and design using common design patterns
+Profound insights of Java and JEE internals
+Excellent Knowledge of Relational databases, SQL, ORM technologies(JPA2, Hibernate)
+Experience in the spring framework
+Experience as a sun certified java Developer
+Experience in developing web applications using at least one popular web framework(JSF, Wicket, GWT, Spring MVC)
+Experience with test-driven development

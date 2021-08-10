@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}RESParse - Form{% endblock %} {%
+block head %} {{ super() }}
+<style>
+  .form-group {
+    padding-top: 25vh;
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+
+  .form-group form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group textarea {
+    width: 500px;
+    height: 300px;
+  }
+
+  .input-btn {
+    width: 120px;
+    padding: 8px;
+    margin: 10px auto;
+    border: 2px solid var(--text-primary-2);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+
+  @media screen and (max-width: 900px) {
+    .form-group textarea {
+      width: 200px;
+      height: 250px;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<section>
+  <div class="form-group">
+    <form
+      action="{{ url_for('submit') }}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      <textarea
+        name="description"
+        cols="0"
+        rows="0"
+        placeholder="Enter job description"
+      ></textarea>
+      <input class="input-filebtn" type="file" name="files[]" multiple="true" />
+      <input class="input-btn" type="submit" , value="Submit" />
+    </form>
+  </div>
+</section>
+{% endblock %}
